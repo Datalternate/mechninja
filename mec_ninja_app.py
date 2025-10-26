@@ -1,7 +1,8 @@
 import streamlit as st
 from utils.fault_codes import get_fault_codes
 from utils.matcher import match_specs
-from utils.ecu_reader import read_ecu_info  # ✅ NEW
+from utils.ecu_reader import read_ecu_info
+from utils.ai_advisor import get_recommendations  # ✅ NEW
 
 st.set_page_config(page_title="Mec Ninja", layout="centered")
 st.title("🧰 Mec Ninja — Car Diagnostic Web App")
@@ -24,12 +25,11 @@ if demo_mode:
         st.subheader("🧠 Spec Match")
         match_specs("sample_model", sample_data)
 
-        st.subheader("🧠 ECU Info")  # ✅ NEW
+        st.subheader("🧠 ECU Info")
         ecu_info = read_ecu_info(demo=True)
         st.json(ecu_info)
 
         st.subheader("🚨 Fault Codes")
-        # Simulated fault codes for demo
         demo_faults = [
             ("P0301", "Cylinder 1 Misfire Detected"),
             ("P0174", "System Too Lean (Bank 2)"),
@@ -37,6 +37,10 @@ if demo_mode:
         ]
         for code, desc in demo_faults:
             st.error(f"{code}: {desc}")
+
+        st.subheader("🧠 AI Recommendations")  # ✅ NEW
+        recommendations = get_recommendations(ecu_info, demo_faults)
+        st.markdown(recommendations)
 
 else:
     import obd
@@ -56,9 +60,13 @@ else:
         st.subheader("🧠 Spec Match")
         match_specs("sample_model", live_data)
 
-        st.subheader("🧠 ECU Info")  # ✅ NEW
+        st.subheader("🧠 ECU Info")
         ecu_info = read_ecu_info(connection)
         st.json(ecu_info)
 
         st.subheader("🚨 Fault Codes")
-        get_fault_codes(connection)
+        fault_codes = get_fault_codes(connection)
+
+        st.subheader("🧠 AI Recommendations")  # ✅ NEW
+        recommendations = get_recommendations(ecu_info, fault_codes)
+        st.markdown(recommendations)
