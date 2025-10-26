@@ -1,13 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mec Ninja</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>🥷 Mec Ninja — Car Diagnostic Tool</h1>
-  <p>This is a demo interface. Click below to launch the full app.</p>
-  <a href="https://mec-ninja.streamlit.app" target="_blank">
-    <button>Launch Mec Ninja Web App</button>
-  </a>
+  <header>
+    <img src="assets/mec-ninja-logo.png" alt="Mec Ninja Logo" class="logo" />
+    <h1>Mec Ninja</h1>
+    <p class="tagline">Plug. Scan. Diagnose. Like a Ninja.</p>
+    <a href="https://mec-ninja.streamlit.app" target="_blank" class="launch-btn">🚀 Launch Web App</a>
+  </header>
+
+  <section class="features">
+    <h2>🔧 What Mec Ninja Does</h2>
+    <div class="feature-grid">
+      <div><h3>📊 Live Scan</h3><p>Reads RPM, speed, throttle in real time.</p></div>
+      <div><h3>🚨 Fault Codes</h3><p>Detects and explains DTCs instantly.</p></div>
+      <div><h3>🧠 Spec Match</h3><p>Compares live data to expected values.</p></div>
+    </div>
+  </section>
+
+  <section class="demo">
+    <h2>🎬 Demo Preview</h2>
+    <img src="assets/demo-screenshot.png" alt="Mec Ninja Demo Screenshot" />
+  </section>
+
+  <footer>
+    <p>Built with ❤️ by Davis | <a href="https://github.com/your-username/mec-ninja" target="_blank">View on GitHub</a></p>
+  </footer>
 </body>
 </html>
