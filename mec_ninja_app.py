@@ -10,7 +10,6 @@ demo_mode = st.checkbox("Run in Demo Mode", value=True)
 if demo_mode:
     st.success("Demo mode is ON. No car connection needed.")
     if st.button("Run Demo Scan"):
-        st.write("🔍 Scanning simulated car data...")
         sample_data = {
             "RPM": "700 rpm",
             "SPEED": "0 km/h",
@@ -29,7 +28,6 @@ else:
     connection = obd.OBD()
     st.success("Connected to car.")
     if st.button("Run Live Scan"):
-        st.write("🔍 Scanning car...")
         commands = [obd.commands.RPM, obd.commands.SPEED, obd.commands.THROTTLE_POS]
         live_data = {}
 
