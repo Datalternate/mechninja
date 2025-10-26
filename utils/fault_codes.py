@@ -1,6 +1,5 @@
 def get_fault_codes(connection=None, demo=True):
     if demo:
-        # Simulated fault codes
         codes = [
             ("P0300", "Random/Multiple Cylinder Misfire Detected"),
             ("P0420", "Catalyst System Efficiency Below Threshold"),
