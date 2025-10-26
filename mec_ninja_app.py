@@ -8,13 +8,15 @@ st.title("🧰 Mec Ninja — Car Diagnostic Web App")
 demo_mode = st.checkbox("Run in Demo Mode", value=True)
 
 if demo_mode:
-    st.success("Demo mode is ON. No car connection needed.")
+    st.success("✅ Demo mode is ON. No car connection needed.")
     if st.button("Run Demo Scan"):
+        # Simulated live data for demo
         sample_data = {
-            "RPM": "700 rpm",
+            "RPM": "950 rpm",
             "SPEED": "0 km/h",
-            "THROTTLE_POS": "0.0 %"
+            "THROTTLE_POS": "1.2 %"
         }
+
         st.subheader("📊 Live Data")
         st.json(sample_data)
 
@@ -22,11 +24,19 @@ if demo_mode:
         match_specs("sample_model", sample_data)
 
         st.subheader("🚨 Fault Codes")
-        get_fault_codes(demo=True)
+        # Simulated fault codes for demo
+        demo_faults = [
+            ("P0301", "Cylinder 1 Misfire Detected"),
+            ("P0174", "System Too Lean (Bank 2)"),
+            ("P0455", "Evaporative Emission System Leak Detected (gross leak)")
+        ]
+        for code, desc in demo_faults:
+            st.error(f"{code}: {desc}")
+
 else:
     import obd
     connection = obd.OBD()
-    st.success("Connected to car.")
+    st.success("✅ Connected to car.")
     if st.button("Run Live Scan"):
         commands = [obd.commands.RPM, obd.commands.SPEED, obd.commands.THROTTLE_POS]
         live_data = {}
