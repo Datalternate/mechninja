@@ -2,7 +2,6 @@ import streamlit as st
 from utils.fault_codes import get_fault_codes
 from utils.matcher import match_specs
 from utils.ecu_reader import read_ecu_info
-from utils.ai_advisor import get_recommendations  # ✅ NEW
 
 st.set_page_config(page_title="Mec Ninja", layout="centered")
 st.title("🧰 Mec Ninja — Car Diagnostic Web App")
@@ -38,10 +37,6 @@ if demo_mode:
         for code, desc in demo_faults:
             st.error(f"{code}: {desc}")
 
-        st.subheader("🧠 AI Recommendations")  # ✅ NEW
-        recommendations = get_recommendations(ecu_info, demo_faults)
-        st.markdown(recommendations)
-
 else:
     import obd
     connection = obd.OBD()
@@ -66,7 +61,3 @@ else:
 
         st.subheader("🚨 Fault Codes")
         fault_codes = get_fault_codes(connection)
-
-        st.subheader("🧠 AI Recommendations")  # ✅ NEW
-        recommendations = get_recommendations(ecu_info, fault_codes)
-        st.markdown(recommendations)
