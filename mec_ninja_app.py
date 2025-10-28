@@ -7,13 +7,15 @@ import pandas as pd  # For simple charts (install if needed: pip install pandas)
 # Set wide layout for hub-style dashboard
 st.set_page_config(page_title="Mec Ninja Scan Hub", layout="wide", page_icon="🧰")
 
-# Custom CSS for branding and hub visuals: Gradients, shadows, colors matching the reference
+# Custom CSS for branding, logo, and enhanced tab visuals
 st.markdown("""
 <style>
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #333; }
-.stTabs [data-baseweb="tab-list"] { gap: 2px; }
-.stTabs [data-baseweb="tab"] { height: 50px; white-space: pre-wrap; background-color: #e9ecef; border-radius: 4px 4px 0 0; gap: 1px; padding-top: 10px; padding-bottom: 10px; }
-.stTabs [aria-selected="true"] { background-color: #d62828 !important; color: white !important; }
+.logo { text-align: center; padding: 1em; background: linear-gradient(135deg, #d62828, #f77f00); color: white; border-radius: 15px; margin-bottom: 1em; box-shadow: 0 4px 8px rgba(0,0,0,0.2); font-size: 2em; }
+.stTabs [data-baseweb="tab-list"] { gap: 10px; justify-content: center; padding: 1em 0; background: #f1f3f4; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.stTabs [data-baseweb="tab"] { height: 60px; white-space: pre-wrap; background-color: #ffffff; border-radius: 8px; gap: 5px; padding: 15px; font-weight: bold; transition: all 0.3s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.stTabs [data-baseweb="tab"]:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+.stTabs [aria-selected="true"] { background: linear-gradient(45deg, #d62828, #f77f00) !important; color: white !important; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
 .stButton>button { border-radius: 8px; background: linear-gradient(45deg, #d62828, #f77f00); color: white; font-weight: bold; border: none; padding: 0.5em 1em; transition: transform 0.2s; }
 .stButton>button:hover { transform: scale(1.05); background: linear-gradient(45deg, #b22222, #e66a00); }
 .stMetric { background: white; border-radius: 10px; padding: 1em; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; }
@@ -22,6 +24,13 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-
 .footer { text-align: center; padding: 1em; background: #343a40; color: white; border-radius: 10px; margin-top: 3em; }
 .sidebar { background: #f1f3f4; padding: 1em; border-radius: 10px; }
 </style>
+""", unsafe_allow_html=True)
+
+# Prominent logo at the top
+st.markdown("""
+<div class="logo">
+    🧰 <strong>Mec Ninja Scan Hub</strong>
+</div>
 """, unsafe_allow_html=True)
 
 # Sidebar for hub controls (model selection, demo toggle)
@@ -37,7 +46,7 @@ with st.sidebar:
     st.markdown("**About**: Your diagnostic toolbox.")
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Main hub with tabs for organized sections
+# Main hub with enhanced tabs for presentable switching
 tab1, tab2, tab3 = st.tabs(["🏠 Home", "🔍 Live Scan", "🚨 Diagnostics"])
 
 with tab1:
