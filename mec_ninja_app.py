@@ -1,32 +1,23 @@
 import streamlit as st
-import base64
 from utils.fault_codes import get_fault_codes
 from utils.matcher import match_specs
 from utils.ecu_reader import read_ecu_info
 
-# Load logo from assets folder
-def load_logo(path):
-    with open(path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
-
-logo_base64 = load_logo("assets/logo.png")
-
 st.set_page_config(page_title="Mec Ninja", layout="centered")
 
-# 🔧 Logo + Branding Header
-st.markdown(f"""
-<div style='text-align: center; margin-top: 1em;'>
-    <img src='data:image/png;base64,{logo_base64}' width='220'/>
-    <h1 style='color: #ff6600; font-size: 2.5em;'>Mec Ninja</h1>
-    <p style='color: #ffffff; font-size: 1.2em;'>Plug-and-scan diagnostics for real-world mechanics</p>
-</div>
+# 🔧 Branding Header
+st.markdown("""
+<h1 style='text-align: center; color: #d62828; font-size: 3em;'>🧰 Mec Ninja</h1>
+<p style='text-align: center; font-size: 1.2em; color: #6c757d;'>
+Plug-and-scan diagnostics for real-world mechanics.
+</p>
 """, unsafe_allow_html=True)
 
 # 🛠️ Hero Section
 st.markdown("""
 <div style='text-align: center; margin-top: 2em;'>
-    <h2 style='color: #ff6600;'>Your Digital Toolbox</h2>
-    <p style='font-size: 1.1em; color: #dddddd;'>
+    <h2 style='color: #343a40;'>Your Digital Toolbox</h2>
+    <p style='font-size: 1.1em; color: #495057;'>
         Scan, diagnose, and fix vehicles with ease — no guesswork, just data.
     </p>
 </div>
@@ -36,16 +27,16 @@ st.markdown("""
 st.markdown("""
 <div style="display: flex; justify-content: space-around; margin-top: 3em;">
   <div style="width: 30%; text-align: center;">
-    <h3 style='color:#ff6600;'>🔍 Live Scan</h3>
-    <p style='color:#ffffff;'>Read RPM, speed, throttle and more in real time.</p>
+    <h3>🔍 Live Scan</h3>
+    <p>Read RPM, speed, throttle and more in real time.</p>
   </div>
   <div style="width: 30%; text-align: center;">
-    <h3 style='color:#ff6600;'>🚨 Fault Codes</h3>
-    <p style='color:#ffffff;'>Instant fault detection with code descriptions.</p>
+    <h3>🚨 Fault Codes</h3>
+    <p>Instant fault detection with code descriptions.</p>
   </div>
   <div style="width: 30%; text-align: center;">
-    <h3 style='color:#ff6600;'>🧠 Spec Match</h3>
-    <p style='color:#ffffff;'>Compare live data to expected specs for quick diagnosis.</p>
+    <h3>🧠 Spec Match</h3>
+    <p>Compare live data to expected specs for quick diagnosis.</p>
   </div>
 </div>
 """, unsafe_allow_html=True)
@@ -111,7 +102,7 @@ else:
 # 🔗 Footer
 st.markdown("""
 <hr>
-<p style='text-align: center; font-size: 0.9em; color: #aaaaaa;'>
-Built for Pan-African mechanics • <a href='https://github.com/your-repo' target='_blank' style='color:#ff6600;'>GitHub</a>
+<p style='text-align: center; font-size: 0.9em; color: #6c757d;'>
+Built for Pan-African mechanics • <a href='https://github.com/your-repo' target='_blank'>GitHub</a>
 </p>
 """, unsafe_allow_html=True)
