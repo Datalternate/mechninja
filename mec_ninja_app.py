@@ -4,14 +4,49 @@ from utils.matcher import match_specs
 from utils.ecu_reader import read_ecu_info
 
 st.set_page_config(page_title="Mec Ninja", layout="centered")
-st.title("🧰 Mec Ninja — Car Diagnostic Web App")
 
-demo_mode = st.checkbox("Run in Demo Mode", value=True)
+# 🔧 Branding Header
+st.markdown("""
+<h1 style='text-align: center; color: #d62828; font-size: 3em;'>🧰 Mec Ninja</h1>
+<p style='text-align: center; font-size: 1.2em; color: #6c757d;'>
+Plug-and-scan diagnostics for real-world mechanics.
+</p>
+""", unsafe_allow_html=True)
+
+# 🛠️ Hero Section
+st.markdown("""
+<div style='text-align: center; margin-top: 2em;'>
+    <h2 style='color: #343a40;'>Your Digital Toolbox</h2>
+    <p style='font-size: 1.1em; color: #495057;'>
+        Scan, diagnose, and fix vehicles with ease — no guesswork, just data.
+    </p>
+</div>
+""", unsafe_allow_html=True)
+
+# ⚙️ Feature Grid
+st.markdown("""
+<div style="display: flex; justify-content: space-around; margin-top: 3em;">
+  <div style="width: 30%; text-align: center;">
+    <h3>🔍 Live Scan</h3>
+    <p>Read RPM, speed, throttle and more in real time.</p>
+  </div>
+  <div style="width: 30%; text-align: center;">
+    <h3>🚨 Fault Codes</h3>
+    <p>Instant fault detection with code descriptions.</p>
+  </div>
+  <div style="width: 30%; text-align: center;">
+    <h3>🧠 Spec Match</h3>
+    <p>Compare live data to expected specs for quick diagnosis.</p>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+# 🧪 Demo Mode Toggle
+demo_mode = st.checkbox("🧪 Run in Demo Mode", value=True)
 
 if demo_mode:
     st.success("✅ Demo mode is ON. No car connection needed.")
     if st.button("Run Demo Scan"):
-        # Simulated live data for demo
         sample_data = {
             "RPM": "950 rpm",
             "SPEED": "0 km/h",
@@ -61,3 +96,13 @@ else:
 
         st.subheader("🚨 Fault Codes")
         fault_codes = get_fault_codes(connection)
+        for code, desc in fault_codes:
+            st.error(f"{code}: {desc}")
+
+# 🔗 Footer
+st.markdown("""
+<hr>
+<p style='text-align: center; font-size: 0.9em; color: #6c757d;'>
+Built for Pan-African mechanics • <a href='https://github.com/your-repo' target='_blank'>GitHub</a>
+</p>
+""", unsafe_allow_html=True)
