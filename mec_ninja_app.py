@@ -2,12 +2,12 @@ import streamlit as st
 from utils.fault_codes import get_fault_codes
 from utils.matcher import match_specs
 from utils.ecu_reader import read_ecu_info
-import pandas as pd  # For simple dataframes/charts if needed
+import pandas as pd  # For simple charts (install if needed: pip install pandas)
 
-# Set wide layout for dashboard feel
+# Set wide layout for hub-style dashboard
 st.set_page_config(page_title="Mec Ninja Scan Hub", layout="wide", page_icon="🧰")
 
-# Custom CSS for hub-like styling: Dashboard theme, cards, metrics
+# Custom CSS for branding and hub visuals: Gradients, shadows, colors matching the reference
 st.markdown("""
 <style>
 body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; color: #333; }
@@ -24,7 +24,7 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-
 </style>
 """, unsafe_allow_html=True)
 
-# Sidebar for hub settings (like a control panel)
+# Sidebar for hub controls (model selection, demo toggle)
 with st.sidebar:
     st.markdown('<div class="sidebar">', unsafe_allow_html=True)
     st.header("🧰 Mec Ninja Hub")
@@ -37,7 +37,7 @@ with st.sidebar:
     st.markdown("**About**: Your diagnostic toolbox.")
     st.markdown('</div>', unsafe_allow_html=True)
 
-# Main hub with tabs for organization
+# Main hub with tabs for organized sections
 tab1, tab2, tab3 = st.tabs(["🏠 Home", "🔍 Live Scan", "🚨 Diagnostics"])
 
 with tab1:
@@ -76,7 +76,7 @@ with tab1:
         """, unsafe_allow_html=True)
 
 with tab2:
-    # Live Scan tab (dashboard-style with metrics)
+    # Live Scan tab (dashboard-style with metrics and charts)
     st.header("🔍 Live Scan Dashboard")
     if demo_mode:
         if st.button("Run Demo Scan"):
