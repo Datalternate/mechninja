@@ -1,35 +1,299 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mec Ninja</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-bg: #1a1d23;
+      --color-card-bg: #24262b;
+      --color-primary: #00d4ff;
+      --color-accent: #ff6b35;
+      --color-text: #ffffff;
+      --color-text-muted: #a8b2d1;
+      --color-border: #2a2f38;
+      --spacing-lg: 80px;
+      --spacing-md: 48px;
+      --spacing-sm: 24px;
+    }
+
+    body {
+      font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      text-align: center;
+      padding: var(--spacing-lg) 0;
+      background: linear-gradient(180deg, rgba(0,212,255,0.05) 0%, rgba(26,29,35,0) 100%);
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 32px;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(0,212,255,0.3));
+      transition: filter 0.3s ease;
+    }
+
+    .logo:hover {
+      filter: drop-shadow(0 0 30px rgba(0,212,255,0.5));
+    }
+
+    h1 {
+      font-size: clamp(36px, 5vw, 48px);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .tagline {
+      font-size: clamp(18px, 2.5vw, 24px);
+      color: var(--color-text-muted);
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    .launch-btn {
+      display: inline-block;
+      padding: 16px 48px;
+      background: var(--color-primary);
+      color: var(--color-bg);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 18px;
+      border-radius: 8px;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 4px 16px rgba(0,212,255,0.2);
+      border: none;
+      cursor: pointer;
+    }
+
+    .launch-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 24px rgba(0,212,255,0.5), 0 8px 24px rgba(0,212,255,0.2);
+    }
+
+    .launch-btn:active {
+      transform: scale(1.02);
+    }
+
+    .features {
+      padding: var(--spacing-lg) 0;
+      background-color: var(--color-bg);
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: clamp(32px, 4vw, 42px);
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-top: var(--spacing-md);
+    }
+
+    .feature-grid > div {
+      background: var(--color-card-bg);
+      padding: 40px 24px;
+      border-radius: 12px;
+      border: 1px solid var(--color-border);
+      transition: all 0.3s ease-in-out;
+      text-align: center;
+    }
+
+    .feature-grid > div:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-primary);
+      box-shadow: 0 8px 24px rgba(0,212,255,0.15);
+    }
+
+    .feature-grid h3 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      font-weight: 700;
+      color: var(--color-primary);
+      line-height: 1.2;
+    }
+
+    .feature-grid p {
+      color: var(--color-text-muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .demo {
+      padding: var(--spacing-lg) 0;
+      text-align: center;
+    }
+
+    .demo h2 {
+      font-size: clamp(32px, 4vw, 42px);
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      color: var(--color-text);
+    }
+
+    .demo img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      border: 1px solid var(--color-border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transition: all 0.3s ease-in-out;
+    }
+
+    .demo img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 48px rgba(0,212,255,0.2);
+    }
+
+    footer {
+      padding: var(--spacing-md) 0;
+      text-align: center;
+      border-top: 1px solid var(--color-border);
+      margin-top: var(--spacing-lg);
+    }
+
+    footer p {
+      color: var(--color-text-muted);
+      font-size: 16px;
+    }
+
+    footer a {
+      color: var(--color-primary);
+      text-decoration: none;
+      transition: all 0.2s ease-in-out;
+      position: relative;
+    }
+
+    footer a:hover {
+      color: var(--color-primary);
+      text-shadow: 0 0 8px rgba(0,212,255,0.5);
+    }
+
+    footer a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: var(--color-primary);
+      transition: width 0.3s ease-in-out;
+    }
+
+    footer a:hover::after {
+      width: 100%;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      :root {
+        --spacing-lg: 48px;
+        --spacing-md: 32px;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .launch-btn {
+        padding: 14px 32px;
+        font-size: 16px;
+      }
+
+      .logo {
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Focus states for accessibility */
+    .launch-btn:focus,
+    footer a:focus {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 4px;
+    }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
 </head>
 <body>
   <header>
-    <img src="assets/mec-ninja-logo.png" alt="Mec Ninja Logo" class="logo" />
-    <h1>Mec Ninja</h1>
-    <p class="tagline">Plug. Scan. Diagnose. Like a Ninja.</p>
-    <a href="https://mec-ninja.streamlit.app" target="_blank" class="launch-btn">🚀 Launch Web App</a>
+    <div class="container">
+      <img src="https://storage.googleapis.com/forge-sites/247a555ef8fb0601114f457b8ea1200d9102884002f9494f845fd0ef99d5fffe.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251101%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251101T171412Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=5bb34119123f4b9c69100a85f6f7062a050949b8c2c7c4c3d276239b94088323998f3b480fe7abb69b623b7af1b289adea2ff0fab8c376457a1a92c9fb6fcb6623783696a98d2dba679d33a901b20c855026290facbf244877393e81e427c536c555f02d4543fa2cb85e955ed9d6bd54e3f34892f40e7d420ffffa59dfc144139a6501d95c70f1f7372576e3d599942f3d0c2c2c9311d86a64b0be9b6cbe767e73d9b863af8c79df27b8f0106ba035d115bf4e31adbc96e0760c2d41122377bd38cd36da11915bfd2d7299c0bf285322f9d0fd4381e1226126abaf80a748d2a8d683965d70cb5e77342859967e43f3c77d71d04ce146de436f2d93a9e575e087" alt="Mec Ninja Logo - Automotive diagnostic tool with ninja-inspired speed and precision" class="logo">
+      <h1>Mec Ninja</h1>
+      <p class="tagline">Plug. Scan. Diagnose. Like a Ninja.</p>
+      <a href="https://mec-ninja.streamlit.app" target="_blank" class="launch-btn">🚀 Launch Web App</a>
+    </div>
   </header>
 
   <section class="features">
-    <h2>🔧 What Mec Ninja Does</h2>
-    <div class="feature-grid">
-      <div><h3>📊 Live Scan</h3><p>Reads RPM, speed, throttle in real time.</p></div>
-      <div><h3>🚨 Fault Codes</h3><p>Detects and explains DTCs instantly.</p></div>
-      <div><h3>🧠 Spec Match</h3><p>Compares live data to expected values.</p></div>
+    <div class="container">
+      <h2>🔧 What Mec Ninja Does</h2>
+      <div class="feature-grid">
+        <div>
+          <h3>📊 Live Scan</h3>
+          <p>Reads RPM, speed, throttle in real time.</p>
+        </div>
+        <div>
+          <h3>🚨 Fault Codes</h3>
+          <p>Detects and explains DTCs instantly.</p>
+        </div>
+        <div>
+          <h3>🧠 Spec Match</h3>
+          <p>Compares live data to expected values.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="demo">
-    <h2>🎬 Demo Preview</h2>
-    <img src="assets/demo-screenshot.png" alt="Mec Ninja Demo Screenshot" />
+    <div class="container">
+      <h2>🎬 Demo Preview</h2>
+      <img src="https://storage.googleapis.com/forge-sites/b0487154aaf7b18d08495132595344d363f34a00a89322179c8e530322231863.webp?X-Goog-Algorithm=GOOG4-RSA-SHA256&amp;X-Goog-Credential=164061697651-compute%40developer.gserviceaccount.com%2F20251101%2Fauto%2Fstorage%2Fgoog4_request&amp;X-Goog-Date=20251101T171412Z&amp;X-Goog-Expires=86400&amp;X-Goog-SignedHeaders=host&amp;response-access-control-allow-origin=https%3A%2F%2Fforge.moonchild.ai&amp;X-Goog-Signature=81c56d3c08b51d3dc4063098df18e8c310c6be9fb9235a81b3043d0804493affc9f0e844ea386bf7edb4cff56dbb2675840c9ca0db1d680682bee0c090e850e3d61551bdaea6b922e431f60dc93998884d4fe0a72ed90f51173807623dbb2b5e0c1290dfa8a086ce46cbc5d0514b668dd39d3d7516ffe169ee98a6163f20473eef1d68a4fc66db8e706ceeca00e8ed019dcb987ea3d1a3f9d6f4898a6f5ba44da84a50d834c4f5810670a48eb05dbd9fd11e7e6e14027df4c78a3c92645b7b5f901ad1ad189d6c0b8df32010fa472b18454eac91eb3261206a4478a43b79279f422662d0d04bee18e7a435fc87d0fb2b1a5e61a543a2b348a94e5a4f18354393" alt="Mec Ninja Demo Screenshot showing real-time automotive diagnostic dashboard with RPM gauge, speed readings, fault code detection panel, and live data streams from vehicle sensors">
+    </div>
   </section>
 
   <footer>
-    <p>Built with ❤️ by Davis | <a href="https://github.com/your-username/mec-ninja" target="_blank">View on GitHub</a></p>
+    <div class="container">
+      <p>Built with <span style="color: var(--color-accent);">❤️</span> by Davis | <a href="https://github.com/your-username/mec-ninja" target="_blank">View on GitHub</a></p>
+    </div>
   </footer>
-</body>
-</html>
+
+</body></html>
